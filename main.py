@@ -29,8 +29,21 @@ def ice_fractals_1():
     pass
 
 
-def ice_fractals_2():
-    pass
+def ice_fractals_2(order, size):
+    if order == 0:
+        turtle.fd(size)
+    else:
+        ice_fractals_2(order - 1, size)
+        turtle.lt(120)
+        ice_fractals_2(order - 1, size / 2)
+        turtle.lt(180)
+        ice_fractals_2(order - 1, size / 2)
+        turtle.lt(120)
+        ice_fractals_2(order - 1, size / 2)
+        turtle.lt(180)
+        ice_fractals_2(order - 1, size / 2)
+        turtle.lt(120)
+        ice_fractals_2(order - 1, size)
 
 
 def levy_curve(order, size):
