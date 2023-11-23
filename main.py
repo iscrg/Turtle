@@ -57,6 +57,26 @@ def levy_curve(order, size):
         turtle.lt(45)
 
 
+def dragon(order, size, n):
+    if order == 0:
+        turtle.fd(size)
+    else:
+        if n == 0:
+            turtle.lt(45)
+        else:
+            turtle.rt(45)
+        dragon(order - 1, size, 0)
+        if n == 0:
+            turtle.rt(90)
+        else:
+            turtle.lt(90)
+        dragon(order - 1, size, 1)
+        if n == 0:
+            turtle.lt(45)
+        else:
+            turtle.rt(45)
+
+
 def fractal1():
     pass
 
