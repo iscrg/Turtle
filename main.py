@@ -77,8 +77,19 @@ def dragon(order, size, n):
             turtle.rt(45)
 
 
-def fractal1():
-    pass
+def fshr_line(order, size):
+    if order == 0:
+        turtle.fd(size)
+    else:
+        fshr_line(order - 1, size)
+        turtle.rt(90)
+        fshr_line(order - 1, size)
+        turtle.lt(90)
+        fshr_line(order - 1, size)
+        turtle.lt(90)
+        fshr_line(order - 1, size)
+        turtle.rt(90)
+        fshr_line(order - 1, size)
 
 
 def fractal2():
