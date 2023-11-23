@@ -1,4 +1,5 @@
 import turtle
+turtle.tracer(0)
 
 
 def recursion():
@@ -102,21 +103,22 @@ def fractal3():
 
 def main():
     print(
-        '[0] Рекурсивные функции \n',
-        '[1] Построение двочиного дерева \n',
-        '[2] Фрактал "Ветка" \n',
-        '[3] Кривая Коха \n',
-        '[4] Снежинка Коха \n',
-        '[5] Кривая Минковского \n',
-        '[6] Ледяные фракталы 1 \n',
-        '[7] Ледяные фракталы 2 \n',
-        '[8] Кривая Леви \n',
-        '[9] Фрактал 1 \n',
-        '[10] Фрактал 2 \n',
-        '[11] Фрактал 3'
+        '[1] Рекурсивные функции \n',
+        '[2] Построение двочиного дерева \n',
+        '[3] Фрактал "Ветка" \n',
+        '[4] Кривая Коха \n',
+        '[5] Снежинка Коха \n',
+        '[6] Кривая Минковского \n',
+        '[7] Ледяные фракталы 1 \n',
+        '[8] Ледяные фракталы 2 \n',
+        '[9] Кривая Леви \n',
+        '[10] Фрактал Дракон Хартера-Хейтуэя \n',
+        '[11] Линия Фишера \n',
+        '[12] Фрактал 2 \n',
+        '[13] Фрактал 3'
     )
 
-    choise = int(input('Выберите фрактал:'))
+    choise = int(input('Выберите фрактал: '))
     if choise == 1:
         recursion()
     elif choise == 2:
@@ -128,18 +130,43 @@ def main():
     elif choise == 5:
         koch_snowflake()
     elif choise == 6:
-        ice_fractals_1()
+        minkowski_curve()
     elif choise == 7:
-        ice_fractals_2()
+        ice_fractals_1()
+    
     elif choise == 8:
-        levy_curve()
+        turtle.pu()
+        turtle.goto(-400, 0)
+        turtle.pd()
+        ice_fractals_2(3, 100)
+    
     elif choise == 9:
-        fractal1()
+        turtle.pu()
+        turtle.goto(-100, 0)
+        turtle.pd()
+        levy_curve(8, 10)
+
     elif choise == 10:
-        fractal2()
+        turtle.pu()
+        turtle.goto(-200, 0)
+        turtle.pd()
+        dragon(12, 6, 0)
+
     elif choise == 11:
+        turtle.pu()
+        turtle.goto(-300, 0)
+        turtle.pd()
+        fshr_line(4, 5)
+        turtle.rt(180)
+        fshr_line(4, 5)
+
+    elif choise == 12:
+        fractal2()
+    elif choise == 13:
         fractal3()
 
 
 if __name__ == '__main__':
     main()
+    turtle.update()
+    turtle.done()
