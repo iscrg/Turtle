@@ -14,16 +14,37 @@ def branch_fractal():
     pass
 
 
-def koch_curve():
-    pass
+def koch_curve(order, size):
+    if order == 0:
+        turtle.forward(size)
+    else:
+        koch_curve(order - 1, size / 3)
+        turtle.left(60)
+        koch_curve(order - 1, size / 3)
+        turtle.right(120)
+        koch_curve(order - 1, size / 3)
+        turtle.left(60)
+        koch_curve(order - 1, size / 3)
 
 
-def koch_snowflake():
-    pass
-
-
-def minkowski_curve():
-    pass
+def minkowski_curve(order, size):
+    if order == 0:
+        turtle.forward(size)
+    else:
+        minkowski_curve(order - 1, size / 8)
+        turtle.left(90)
+        minkowski_curve(order-1, size/8)
+        turtle.right(90)
+        minkowski_curve(order - 1, size/8)
+        turtle.right(90)
+        minkowski_curve(order - 1, size/8)
+        minkowski_curve(order - 1, size/8)
+        turtle.left(90)
+        minkowski_curve(order - 1, size/8)
+        turtle.left(90)
+        minkowski_curve(order - 1, size/8)
+        turtle.right(90)
+        minkowski_curve(order - 1, size/8)
 
 
 def ice_fractals_1():
@@ -121,16 +142,39 @@ def main():
     choise = int(input('Выберите фрактал: '))
     if choise == 1:
         recursion()
+
     elif choise == 2:
         binary_tree()
+
     elif choise == 3:
         branch_fractal()
+
     elif choise == 4:
-        koch_curve()
+        turtle.up()
+        turtle.goto(-100, 0)
+        turtle.down()
+        n = int(input('Глубина рекурсии:'))
+        a = int(input('Длина стороны:'))
+        koch_curve(n, a)
+
     elif choise == 5:
-        koch_snowflake()
+        turtle.up()
+        turtle.goto(-100, 0)
+        turtle.down()
+        n = int(input('Глубина рекурсии:'))
+        a = int(input('Длина стороны:'))
+        for i in range(3):
+            koch_curve(n, a)
+            turtle.right(120)
+
     elif choise == 6:
-        minkowski_curve()
+        turtle.up()
+        turtle.goto(-100, 0)
+        turtle.down()
+        n = int(input('Глубина рекурсии:'))
+        a = int(input('Длина стороны:'))
+        minkowski_curve(n, a)
+
     elif choise == 7:
         ice_fractals_1()
     
@@ -162,6 +206,7 @@ def main():
 
     elif choise == 12:
         fractal2()
+
     elif choise == 13:
         fractal3()
 
