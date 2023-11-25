@@ -2,16 +2,52 @@ import turtle
 turtle.tracer(0)
 
 
-def recursion():
-    pass
+def recursion(size):
+    if size > 10:
+        for _ in range(4):
+            turtle.forward(size)
+            turtle.rt(90)
+        turtle.forward(size * 0.1)
+        turtle.rt(10)
+        recursion(size / 1.1)
+        
 
+def binary_tree(order, size):   
+    turtle.colormode(255)    
+    if order == 0:
+        return
+    else:
+        cg = 255 - int(order * (250/6)) % 255
+        turtle.forward(size)
+        turtle.rt(30)
+        binary_tree(order - 1, size / 2)
+        turtle.lt(60) 
+        binary_tree(order - 1, size / 2)
+        turtle.color(0, cg, 0)
+        turtle.rt(30)
+        turtle.backward(size)
+        
 
-def binary_tree():
-    pass
+def branch_fractal(order, size):
+    turtle.colormode(255) 
+    if order == 0:
+        turtle.left(180)
+        return
 
+    cg = 255 - int(order * (250/6)) % 255
+    x = size / (order+1)
+    for i in range(order):
+        turtle.forward(x)
+        turtle.left(45)
+        branch_fractal(order-i-1, 0.5*x*(order-i-1))
+        turtle.left(90)
+        branch_fractal(order-i-1, 0.5*x*(order-i-1))
+        turtle.color(0, cg, 0)
+        turtle.right(135)
 
-def branch_fractal():
-    pass
+    turtle.forward(x)
+    turtle.left(180)
+    turtle.forward(size)
 
 
 def koch_curve(order, size):
@@ -31,20 +67,20 @@ def minkowski_curve(order, size):
     if order == 0:
         turtle.forward(size)
     else:
-        minkowski_curve(order - 1, size / 8)
+        minkowski_curve(order - 1, size / 2)
         turtle.left(90)
-        minkowski_curve(order-1, size/8)
+        minkowski_curve(order-1, size / 2)
         turtle.right(90)
-        minkowski_curve(order - 1, size/8)
+        minkowski_curve(order - 1, size / 2)
         turtle.right(90)
-        minkowski_curve(order - 1, size/8)
-        minkowski_curve(order - 1, size/8)
+        minkowski_curve(order - 1, size / 2)
+        minkowski_curve(order - 1, size / 2)
         turtle.left(90)
-        minkowski_curve(order - 1, size/8)
+        minkowski_curve(order - 1, size / 2)
         turtle.left(90)
-        minkowski_curve(order - 1, size/8)
+        minkowski_curve(order - 1, size / 2)
         turtle.right(90)
-        minkowski_curve(order - 1, size/8)
+        minkowski_curve(order - 1, size / 2)
 
 
 def ice_fractals_1():
@@ -118,9 +154,22 @@ def fractal2():
     pass
 
 
-def fractal3():
-    pass
-
+def spikes(order, size):
+    if order == 0:
+        turtle.fd(size)
+    else:
+        turtle.fd(size)
+        turtle.lt(45)
+        spikes(order - 1, size)
+        turtle.lt(45)
+        turtle.fd(size)
+        turtle.backward(size)
+        turtle.rt(135)
+        spikes(order - 1, size)
+        turtle.lt(45)
+        turtle.fd(size)
+    
+        
 
 def main():
     print(
@@ -141,39 +190,44 @@ def main():
 
     choise = int(input('Выберите фрактал: '))
     if choise == 1:
-        recursion()
+        turtle.up()
+        turtle.goto(-100, 200)
+        turtle.down()
+        recursion(300)
 
     elif choise == 2:
-        binary_tree()
+        turtle.up()
+        turtle.goto(0, -100)
+        turtle.down()
+        turtle.lt(90)
+        binary_tree(6, 200)
 
     elif choise == 3:
-        branch_fractal()
+        turtle.up()
+        turtle.goto(0, -300)
+        turtle.down()
+        turtle.lt(90)
+        branch_fractal(5, 800)
 
     elif choise == 4:
         turtle.up()
-        turtle.goto(-100, 0)
+        turtle.goto(-300, 0)
         turtle.down()
-        n = int(input('Глубина рекурсии:'))
-        a = int(input('Длина стороны:'))
-        koch_curve(n, a)
+        koch_curve(5, 600)
 
     elif choise == 5:
         turtle.up()
-        turtle.goto(-100, 0)
+        turtle.goto(-300, 0)
         turtle.down()
-        n = int(input('Глубина рекурсии:'))
-        a = int(input('Длина стороны:'))
         for i in range(3):
-            koch_curve(n, a)
+            koch_curve(5, 600)
             turtle.right(120)
 
     elif choise == 6:
         turtle.up()
-        turtle.goto(-100, 0)
+        turtle.goto(-300, 0)
         turtle.down()
-        n = int(input('Глубина рекурсии:'))
-        a = int(input('Длина стороны:'))
-        minkowski_curve(n, a)
+        minkowski_curve(4, 50)
 
     elif choise == 7:
         ice_fractals_1()
@@ -208,7 +262,10 @@ def main():
         fractal2()
 
     elif choise == 13:
-        fractal3()
+        turtle.up()
+        turtle.goto(-150, 0)
+        turtle.down()
+        spikes(7, 5)
 
 
 if __name__ == '__main__':
