@@ -83,8 +83,17 @@ def minkowski_curve(order, size):
         minkowski_curve(order - 1, size / 2)
 
 
-def ice_fractals_1():
-    pass
+def ice_fractals_1(order, size):
+    if order == 0:
+        turtle.forward(size)
+    else:
+        ice_fractals_1(order-1, size / 2)
+        turtle.left(90)
+        ice_fractals_1(order - 1, size / 4)
+        turtle.left(180)
+        ice_fractals_1(order - 1, size / 4)
+        turtle.left(90)
+        ice_fractals_1(order - 1, size / 2)
 
 
 def ice_fractals_2(order, size):
@@ -150,8 +159,17 @@ def fshr_line(order, size):
         fshr_line(order - 1, size)
 
 
-def fractal2():
-    pass
+def cat_fractal(order, size):
+    if order == 0:
+        turtle.forward(size)
+    else:
+        turtle.left(90)
+        cat_fractal(order - 1, size/2)
+        turtle.right(45)
+        cat_fractal(order - 1, size/4)
+        turtle.right(45)
+        cat_fractal(order - 1, size / 4)
+        turtle.left(90)
 
 
 def spikes(order, size):
@@ -184,7 +202,7 @@ def main():
         '[9] Кривая Леви \n',
         '[10] Фрактал Дракон Хартера-Хейтуэя \n',
         '[11] Линия Фишера \n',
-        '[12] Фрактал 2 \n',
+        '[12] Кошачий фрактал \n',
         '[13] Фрактал 3'
     )
 
@@ -219,7 +237,7 @@ def main():
         turtle.up()
         turtle.goto(-300, 0)
         turtle.down()
-        for i in range(3):
+        for _ in range(3):
             koch_curve(5, 600)
             turtle.right(120)
 
@@ -230,7 +248,10 @@ def main():
         minkowski_curve(4, 50)
 
     elif choise == 7:
-        ice_fractals_1()
+        turtle.up()
+        turtle.goto(-300, 0)
+        turtle.down()
+        ice_fractals_1(4, 500)
     
     elif choise == 8:
         turtle.pu()
@@ -259,7 +280,10 @@ def main():
         fshr_line(4, 5)
 
     elif choise == 12:
-        fractal2()
+        turtle.up()
+        turtle.goto(-150, 0)
+        turtle.down()
+        cat_fractal(3, 500)
 
     elif choise == 13:
         turtle.up()
