@@ -1,3 +1,9 @@
+"""
+Fisher D. - 100
+Popov I. - 100
+Fedyalin D. - 90
+"""
+
 import turtle
 turtle.tracer(0)
 
@@ -159,17 +165,18 @@ def fshr_line(order, size):
         fshr_line(order - 1, size)
 
 
-def cat_fractal(order, size):
+def powerline_fractal(order, size):
     if order == 0:
         turtle.forward(size)
     else:
-        turtle.left(90)
-        cat_fractal(order - 1, size/2)
-        turtle.right(45)
-        cat_fractal(order - 1, size/4)
-        turtle.right(45)
-        cat_fractal(order - 1, size / 4)
-        turtle.left(90)
+        powerline_fractal(order - 1, size/2)
+        for _ in range(2):
+            turtle.left(75)
+            powerline_fractal(order - 1, size/4)
+            turtle.right(150)
+            powerline_fractal(order - 1, size / 4)
+            turtle.left(75)
+        powerline_fractal(order - 1, size / 2)
 
 
 def spikes(order, size):
@@ -202,7 +209,7 @@ def main():
         '[9] Кривая Леви \n',
         '[10] Фрактал Дракон Хартера-Хейтуэя \n',
         '[11] Линия Фишера \n',
-        '[12] Кошачий фрактал \n',
+        '[12] Линия электропередач \n',
         '[13] Фрактал 3'
     )
 
@@ -283,7 +290,7 @@ def main():
         turtle.up()
         turtle.goto(-150, 0)
         turtle.down()
-        cat_fractal(3, 500)
+        powerline_fractal(4, 400)
 
     elif choise == 13:
         turtle.up()
